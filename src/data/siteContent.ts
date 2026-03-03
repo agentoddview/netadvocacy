@@ -63,28 +63,28 @@ export const siteContent: SiteContent = {
   },
   metrics: [
     {
-      id: 'legislators',
-      value: '7',
-      label: 'Legislators Met',
-      note: 'Met directly through advocacy meetings.',
-    },
-    {
       id: 'residents',
       value: '25K+',
       label: 'People Connected',
       note: 'Over 25,000 people connected with NET.',
     },
     {
-      id: 'cities',
-      value: '4',
-      label: 'Cities Covered In Games',
-      note: 'Cities currently represented in NET games.',
-    },
-    {
       id: 'visits',
       value: '1M+',
       label: 'Total Visits',
       note: 'Over 1,000,000 visits across experiences.',
+    },
+    {
+      id: 'legislators',
+      value: '9',
+      label: 'Legislators Met',
+      note: 'Met directly through advocacy meetings.',
+    },
+    {
+      id: 'cities',
+      value: '7',
+      label: 'Municipalities Covered in Games',
+      note: 'Includes both cities and towns such as Auburn.',
     },
   ],
   posts: [
