@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import type { Metric } from '../data/siteContent'
 
 type ImpactStatsProps = {
@@ -18,7 +19,12 @@ function ImpactStats({ heading, subtitle, lastUpdated, metrics }: ImpactStatsPro
 
       <div className="impact-grid">
         {metrics.map((metric, index) => (
-          <article className="metric-card" key={metric.id} style={{ animationDelay: `${index * 120}ms` }}>
+          <article
+            className="metric-card"
+            data-reveal
+            key={metric.id}
+            style={{ '--reveal-delay': `${index * 120}ms` } as CSSProperties}
+          >
             <p className="metric-value">{metric.value}</p>
             <p className="metric-label">{metric.label}</p>
             {metric.note ? <p className="metric-note">{metric.note}</p> : null}

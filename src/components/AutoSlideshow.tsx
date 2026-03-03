@@ -71,29 +71,31 @@ function AutoSlideshow({ slides, postUrl, postTitle }: AutoSlideshowProps) {
         <img alt={activeSlide.alt} src={activeSlide.image} />
       </a>
 
-      <div className="slideshow-controls">
-        <button aria-label="Previous slide" className="slide-btn" onClick={() => moveBy(-1)} type="button">
-          Prev
-        </button>
+      {slides.length > 1 ? (
+        <div className="slideshow-controls">
+          <button aria-label="Previous slide" className="slide-btn" onClick={() => moveBy(-1)} type="button">
+            Prev
+          </button>
 
-        <div aria-label="Slide selector" className="slide-indicators" role="tablist">
-          {slides.map((slide, slideIndex) => (
-            <button
-              aria-label={`Show slide ${slideIndex + 1}`}
-              aria-selected={slideIndex === normalizedIndex}
-              className={`slide-dot ${slideIndex === normalizedIndex ? 'is-active' : ''}`}
-              key={slide.id}
-              onClick={() => setIndex(slideIndex)}
-              role="tab"
-              type="button"
-            />
-          ))}
+          <div aria-label="Slide selector" className="slide-indicators" role="tablist">
+            {slides.map((slide, slideIndex) => (
+              <button
+                aria-label={`Show slide ${slideIndex + 1}`}
+                aria-selected={slideIndex === normalizedIndex}
+                className={`slide-dot ${slideIndex === normalizedIndex ? 'is-active' : ''}`}
+                key={slide.id}
+                onClick={() => setIndex(slideIndex)}
+                role="tab"
+                type="button"
+              />
+            ))}
+          </div>
+
+          <button aria-label="Next slide" className="slide-btn" onClick={() => moveBy(1)} type="button">
+            Next
+          </button>
         </div>
-
-        <button aria-label="Next slide" className="slide-btn" onClick={() => moveBy(1)} type="button">
-          Next
-        </button>
-      </div>
+      ) : null}
     </div>
   )
 }

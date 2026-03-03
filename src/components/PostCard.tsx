@@ -8,7 +8,7 @@ type PostCardProps = {
 
 function PostCard({ post, reverse = false }: PostCardProps) {
   return (
-    <article className={`post-card ${reverse ? 'is-reverse' : ''}`}>
+    <article className={`post-card ${reverse ? 'is-reverse' : ''}`} data-reveal>
       <div className="post-card-media">
         <AutoSlideshow postTitle={post.title} postUrl={post.url} slides={post.slides} />
       </div>

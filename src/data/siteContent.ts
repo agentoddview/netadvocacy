@@ -29,8 +29,7 @@ export type SiteContent = {
 
 export const brand = {
   name: 'New England Transit',
-  logoUrl:
-    'https://images.squarespace-cdn.com/content/v1/68b52f5d040b6e3906c32794/0e990523-2a23-4a68-969d-dfca421a7cd9/netransit893.png',
+  logoUrl: '/assets/net-logo-black.png',
 }
 
 export const navItems: NavItem[] = [
@@ -86,19 +85,9 @@ export const siteContent: SiteContent = {
       url: 'https://www.linkedin.com/posts/new-england-transit_not-even-the-fire-alarm-stopped-ilias-benmokrane-activity-7423106511381635074-oQzx',
       slides: [
         {
-          id: 'fire-alarm-1',
-          image: '/assets/posts/fire-alarm-1.svg',
-          alt: 'Placeholder slide for advocacy meeting with Senator Crighton',
-        },
-        {
-          id: 'fire-alarm-2',
-          image: '/assets/posts/fire-alarm-2.svg',
-          alt: 'Placeholder slide showing transit policy presentation context',
-        },
-        {
-          id: 'fire-alarm-3',
-          image: '/assets/posts/fire-alarm-3.svg',
-          alt: 'Placeholder slide for community-facing transit education tools',
+          id: 'fire-alarm-photo',
+          image: '/assets/posts/post-1.jpg',
+          alt: 'Advocacy meeting with transit simulator demonstration',
         },
       ],
       dateOrder: 400,
@@ -111,19 +100,9 @@ export const siteContent: SiteContent = {
       url: 'https://www.linkedin.com/posts/new-england-transit_ilias-benmokrane-is-in-naples-italy-activity-7416565087957848065-EV-v',
       slides: [
         {
-          id: 'naples-1',
-          image: '/assets/posts/naples-1.svg',
-          alt: 'Placeholder slide for NET transit outreach in Naples',
-        },
-        {
-          id: 'naples-2',
-          image: '/assets/posts/naples-2.svg',
-          alt: 'Placeholder slide for international transit policy discussion',
-        },
-        {
-          id: 'naples-3',
-          image: '/assets/posts/naples-3.svg',
-          alt: 'Placeholder slide featuring cross-city transit collaboration',
+          id: 'naples-photo',
+          image: '/assets/posts/post-2.jpg',
+          alt: 'International advocacy outreach photo in Naples',
         },
       ],
       dateOrder: 300,
@@ -136,19 +115,9 @@ export const siteContent: SiteContent = {
       url: 'https://www.linkedin.com/posts/new-england-transit_boston-bus-simulator-continues-to-make-strides-activity-7407099611049402368--EGZ',
       slides: [
         {
-          id: 'simulator-1',
-          image: '/assets/posts/simulator-1.svg',
-          alt: 'Placeholder slide for Boston Bus Simulator advocacy outreach',
-        },
-        {
-          id: 'simulator-2',
-          image: '/assets/posts/simulator-2.svg',
-          alt: 'Placeholder slide for transit education using simulation',
-        },
-        {
-          id: 'simulator-3',
-          image: '/assets/posts/simulator-3.svg',
-          alt: 'Placeholder slide for policy engagement with simulation tools',
+          id: 'simulator-photo',
+          image: '/assets/posts/post-3.jpg',
+          alt: 'Boston Bus Simulator advocacy momentum photo',
         },
       ],
       dateOrder: 200,
@@ -161,19 +130,9 @@ export const siteContent: SiteContent = {
       url: 'https://www.linkedin.com/posts/new-england-transit_last-month-founders-ilias-benmokrane-and-activity-7402415280834002945-0N9s',
       slides: [
         {
-          id: 'founders-1',
-          image: '/assets/posts/founders-1.svg',
-          alt: 'Placeholder slide for founders advocacy outreach meeting',
-        },
-        {
-          id: 'founders-2',
-          image: '/assets/posts/founders-2.svg',
-          alt: 'Placeholder slide for NET regional transit equity efforts',
-        },
-        {
-          id: 'founders-3',
-          image: '/assets/posts/founders-3.svg',
-          alt: 'Placeholder slide for policy coordination and transit access',
+          id: 'founders-photo',
+          image: '/assets/posts/post-4.jpg',
+          alt: 'Founders coordinating transit equity advocacy with policymakers',
         },
       ],
       dateOrder: 100,
