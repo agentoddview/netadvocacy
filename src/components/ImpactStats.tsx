@@ -1,0 +1,34 @@
+import type { Metric } from '../data/siteContent'
+
+type ImpactStatsProps = {
+  heading: string
+  subtitle: string
+  lastUpdated: string
+  metrics: Metric[]
+}
+
+function ImpactStats({ heading, subtitle, lastUpdated, metrics }: ImpactStatsProps) {
+  return (
+    <div className="container section-shell">
+      <div className="section-heading">
+        <p className="section-label">Impact</p>
+        <h2>{heading}</h2>
+        <p>{subtitle}</p>
+      </div>
+
+      <div className="impact-grid">
+        {metrics.map((metric, index) => (
+          <article className="metric-card" key={metric.id} style={{ animationDelay: `${index * 120}ms` }}>
+            <p className="metric-value">{metric.value}</p>
+            <p className="metric-label">{metric.label}</p>
+            {metric.note ? <p className="metric-note">{metric.note}</p> : null}
+          </article>
+        ))}
+      </div>
+
+      <p className="impact-updated">{lastUpdated}</p>
+    </div>
+  )
+}
+
+export default ImpactStats
