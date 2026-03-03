@@ -3,7 +3,7 @@ import { brand, type NavItem, type SectionId } from '../data/siteContent'
 type HeaderNavProps = {
   items: NavItem[]
   activeSection: SectionId
-  onDonateClick: () => void
+  donateUrl: string
   onNavigate: (sectionId: SectionId) => void
   logoUrl: string
 }
@@ -11,7 +11,7 @@ type HeaderNavProps = {
 function HeaderNav({
   items,
   activeSection,
-  onDonateClick,
+  donateUrl,
   onNavigate,
   logoUrl,
 }: HeaderNavProps) {
@@ -44,9 +44,9 @@ function HeaderNav({
           </ul>
         </nav>
 
-        <button className="donate-btn" onClick={onDonateClick} type="button">
+        <a className="donate-btn" href={donateUrl} rel="noreferrer" target="_blank">
           Donate
-        </button>
+        </a>
       </div>
     </header>
   )

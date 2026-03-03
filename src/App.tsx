@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
 import ContactForm from './components/ContactForm'
-import DonationModal from './components/DonationModal'
 import HeaderNav from './components/HeaderNav'
 import HeroSection from './components/HeroSection'
 import ImpactStats from './components/ImpactStats'
@@ -15,8 +14,9 @@ import {
   type SectionId,
 } from './data/siteContent'
 
+const DONATION_URL = 'https://buy.stripe.com/eVq5kFa2JckX23B6QKeEo00'
+
 function App() {
-  const [isDonationOpen, setIsDonationOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<SectionId>('home')
   const orderedPosts = useMemo(
     () => [...siteContent.posts].sort((a, b) => b.dateOrder - a.dateOrder),
@@ -128,17 +128,17 @@ function App() {
     <>
       <HeaderNav
         activeSection={activeSection}
+        donateUrl={DONATION_URL}
         items={navItems}
         logoUrl={brand.logoUrl}
-        onDonateClick={() => setIsDonationOpen(true)}
         onNavigate={scrollToSection}
       />
 
       <main className="site-main">
         <section className="section hero-section" id="home">
           <HeroSection
+            donateUrl={DONATION_URL}
             hero={siteContent.hero}
-            onDonateClick={() => setIsDonationOpen(true)}
             onViewOutreach={() => scrollToSection('outreach')}
           />
         </section>
@@ -174,11 +174,6 @@ function App() {
         leaders={siteContent.footer.leaders}
         mission={siteContent.footer.mission}
         socialLinks={siteContent.footer.social}
-      />
-
-      <DonationModal
-        isOpen={isDonationOpen}
-        onClose={() => setIsDonationOpen(false)}
       />
     </>
   )
