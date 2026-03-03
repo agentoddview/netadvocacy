@@ -9,6 +9,13 @@ type ImpactStatsProps = {
 }
 
 function ImpactStats({ heading, subtitle, lastUpdated, metrics }: ImpactStatsProps) {
+  const metricKickers: Record<string, string> = {
+    legislators: 'Policy Outreach',
+    residents: 'Community Reach',
+    cities: 'Coverage',
+    visits: 'Platform Growth',
+  }
+
   return (
     <div className="container section-shell">
       <div className="section-heading">
@@ -20,11 +27,12 @@ function ImpactStats({ heading, subtitle, lastUpdated, metrics }: ImpactStatsPro
       <div className="impact-grid">
         {metrics.map((metric, index) => (
           <article
-            className="metric-card"
+            className={`metric-card metric-card--${metric.id}`}
             data-reveal
             key={metric.id}
             style={{ '--reveal-delay': `${index * 120}ms` } as CSSProperties}
           >
+            <p className="metric-kicker">{metricKickers[metric.id] ?? 'Impact'}</p>
             <p className="metric-value">{metric.value}</p>
             <p className="metric-label">{metric.label}</p>
             {metric.note ? <p className="metric-note">{metric.note}</p> : null}
