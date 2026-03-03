@@ -1,10 +1,28 @@
+import { useMemo, useState } from 'react'
+
 type ResearchEmbedProps = {
   title: string
   description: string
-  pdfPath: string
+  fullReportPath: string
+  policyBriefPath: string
 }
 
-function ResearchEmbed({ title, description, pdfPath }: ResearchEmbedProps) {
+function ResearchEmbed({
+  title,
+  description,
+  fullReportPath,
+  policyBriefPath,
+}: ResearchEmbedProps) {
+  const [selectedDoc, setSelectedDoc] = useState<'full' | 'brief'>('full')
+
+  const activeDocPath = useMemo(
+    () => (selectedDoc === 'full' ? fullReportPath : policyBriefPath),
+    [fullReportPath, policyBriefPath, selectedDoc],
+  )
+
+  const activeDocLabel =
+    selectedDoc === 'full' ? '22-Page Research Paper' : '1-Page Policy Brief'
+
   return (
     <div className="container section-shell">
       <div className="section-heading">
@@ -14,18 +32,52 @@ function ResearchEmbed({ title, description, pdfPath }: ResearchEmbedProps) {
       </div>
 
       <div className="research-panel">
-        <object aria-label={title} className="research-embed" data={pdfPath} type="application/pdf">
+        <div className="research-switch">
+          <button
+            className={`doc-toggle ${selectedDoc === 'full' ? 'is-active' : ''}`}
+            onClick={() => setSelectedDoc('full')}
+            type="button"
+          >
+            22-Page Research Paper
+          </button>
+          <button
+            className={`doc-toggle ${selectedDoc === 'brief' ? 'is-active' : ''}`}
+            onClick={() => setSelectedDoc('brief')}
+            type="button"
+          >
+            1-Page Policy Brief
+          </button>
+        </div>
+
+        <object
+          aria-label={`${title} - ${activeDocLabel}`}
+          className="research-embed"
+          data={activeDocPath}
+          key={activeDocPath}
+          type="application/pdf"
+        >
           <p>
             Your browser cannot preview this PDF.
-            <a className="text-link" href={pdfPath} rel="noreferrer" target="_blank">
+            <a className="text-link" href={activeDocPath} rel="noreferrer" target="_blank">
               {' '}
               Download the proposal.
             </a>
           </p>
         </object>
-        <a className="btn btn-secondary" href={pdfPath} rel="noreferrer" target="_blank">
-          Download Proposal PDF
-        </a>
+        <div className="research-actions">
+          <a className="btn btn-secondary" href={activeDocPath} rel="noreferrer" target="_blank">
+            Open {activeDocLabel}
+          </a>
+          {selectedDoc === 'full' ? (
+            <button className="btn btn-secondary" onClick={() => setSelectedDoc('brief')} type="button">
+              View 1-Page Policy Brief
+            </button>
+          ) : (
+            <button className="btn btn-secondary" onClick={() => setSelectedDoc('full')} type="button">
+              View 22-Page Research Paper
+            </button>
+          )}
+        </div>
       </div>
     </div>
   )

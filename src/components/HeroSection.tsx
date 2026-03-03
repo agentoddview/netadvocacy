@@ -2,10 +2,11 @@ import type { SiteContent } from '../data/siteContent'
 
 type HeroSectionProps = {
   hero: SiteContent['hero']
+  onViewOutreach: () => void
   onDonateClick: () => void
 }
 
-function HeroSection({ hero, onDonateClick }: HeroSectionProps) {
+function HeroSection({ hero, onViewOutreach, onDonateClick }: HeroSectionProps) {
   return (
     <div className="container">
       <div className="hero-card" data-reveal>
@@ -15,9 +16,9 @@ function HeroSection({ hero, onDonateClick }: HeroSectionProps) {
             <h1>{hero.title}</h1>
             <p className="hero-copy">{hero.description}</p>
             <div className="hero-actions">
-              <a className="btn btn-primary" href="#outreach">
+              <button className="btn btn-primary" onClick={onViewOutreach} type="button">
                 {hero.primaryCta}
-              </a>
+              </button>
               <button className="btn btn-secondary" onClick={onDonateClick} type="button">
                 {hero.secondaryCta}
               </button>

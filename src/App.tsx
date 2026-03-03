@@ -12,37 +12,57 @@ import {
   impactMeta,
   navItems,
   siteContent,
-  type NavItem,
+  type SectionId,
 } from './data/siteContent'
 
 function App() {
   const [isDonationOpen, setIsDonationOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState<NavItem['id']>('home')
+  const [activeSection, setActiveSection] = useState<SectionId>('home')
   const orderedPosts = useMemo(
     () => [...siteContent.posts].sort((a, b) => b.dateOrder - a.dateOrder),
     [],
   )
+
+  const scrollToSection = (sectionId: SectionId) => {
+    const target = document.getElementById(sectionId)
+    if (!target) {
+      return
+    }
+
+    const header = document.querySelector<HTMLElement>('.site-header')
+    const offset = (header?.offsetHeight ?? 0) + 16
+    const y = target.getBoundingClientRect().top + window.scrollY - offset
+    window.scrollTo({ top: y, behavior: 'smooth' })
+    setActiveSection(sectionId)
+  }
 
   useEffect(() => {
     const sections = navItems
       .map((item) => document.getElementById(item.id))
       .filter((section): section is HTMLElement => section !== null)
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+    const updateActiveSection = () => {
+      const header = document.querySelector<HTMLElement>('.site-header')
+      const threshold = window.scrollY + (header?.offsetHeight ?? 0) + 120
+      let current = sections[0]?.id ?? 'home'
 
-        if (visible[0]) {
-          setActiveSection(visible[0].target.id as NavItem['id'])
+      sections.forEach((section) => {
+        if (section.offsetTop <= threshold) {
+          current = section.id
         }
-      },
-      { rootMargin: '-35% 0px -45% 0px', threshold: [0.2, 0.4, 0.6, 0.8] },
-    )
+      })
 
-    sections.forEach((section) => observer.observe(section))
-    return () => observer.disconnect()
+      setActiveSection(current as SectionId)
+    }
+
+    updateActiveSection()
+    window.addEventListener('scroll', updateActiveSection, { passive: true })
+    window.addEventListener('resize', updateActiveSection)
+
+    return () => {
+      window.removeEventListener('scroll', updateActiveSection)
+      window.removeEventListener('resize', updateActiveSection)
+    }
   }, [])
 
   useEffect(() => {
@@ -54,7 +74,6 @@ function App() {
       const maxScrollable = Math.max(document.body.scrollHeight - window.innerHeight, 1)
       const progress = window.scrollY / maxScrollable
       root.style.setProperty('--scroll-progress', progress.toFixed(4))
-      root.style.setProperty('--scroll-shift', `${window.scrollY * 0.08}px`)
       root.style.setProperty('--scroll-shift-soft', `${window.scrollY * 0.03}px`)
       root.style.setProperty('--scroll-shift-inverse', `${window.scrollY * -0.025}px`)
     }
@@ -112,6 +131,7 @@ function App() {
         items={navItems}
         logoUrl={brand.logoUrl}
         onDonateClick={() => setIsDonationOpen(true)}
+        onNavigate={scrollToSection}
       />
 
       <main className="site-main">
@@ -119,6 +139,7 @@ function App() {
           <HeroSection
             hero={siteContent.hero}
             onDonateClick={() => setIsDonationOpen(true)}
+            onViewOutreach={() => scrollToSection('outreach')}
           />
         </section>
 
@@ -138,7 +159,8 @@ function App() {
         <section className="section research-section" data-reveal id="research">
           <ResearchEmbed
             description={siteContent.research.description}
-            pdfPath={siteContent.research.pdfPath}
+            fullReportPath={siteContent.research.fullReportPath}
+            policyBriefPath={siteContent.research.policyBriefPath}
             title={siteContent.research.title}
           />
         </section>

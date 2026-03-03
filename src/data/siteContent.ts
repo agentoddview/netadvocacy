@@ -22,7 +22,12 @@ export type SiteContent = {
   }
   metrics: Metric[]
   posts: AdvocacyPost[]
-  research: { title: string; description: string; pdfPath: string }
+  research: {
+    title: string
+    description: string
+    fullReportPath: string
+    policyBriefPath: string
+  }
   contact: { email: string; subjectPrefix: string }
   footer: { mission: string; leaders: string[]; social: SocialLink[] }
 }
@@ -44,7 +49,7 @@ export const impactMeta = {
   heading: 'Impact Snapshot',
   subtitle:
     'New England Transit advocacy is focused on practical transit equity policy, education, and public engagement.',
-  lastUpdated: 'Last updated: Placeholder values pending final 2026 reporting.',
+  lastUpdated: 'Last updated: March 2026',
 }
 
 export const siteContent: SiteContent = {
@@ -59,21 +64,23 @@ export const siteContent: SiteContent = {
   metrics: [
     {
       id: 'legislators',
-      value: '00+',
-      label: 'Legislators Engaged',
-      note: 'Placeholder metric',
+      value: '7',
+      label: 'Legislators Met',
     },
     {
       id: 'residents',
-      value: '00,000+',
-      label: 'Residents Reached',
-      note: 'Placeholder metric',
+      value: '25,000+',
+      label: 'People Connected',
     },
     {
       id: 'cities',
-      value: '00+',
-      label: 'Cities Represented',
-      note: 'Placeholder metric',
+      value: '4',
+      label: 'Cities Covered In Games',
+    },
+    {
+      id: 'visits',
+      value: '1,000,000+',
+      label: 'Total Visits',
     },
   ],
   posts: [
@@ -141,8 +148,9 @@ export const siteContent: SiteContent = {
   research: {
     title: 'BU Research Proposal: Fare-Free Buses',
     description:
-      'This section is reserved for the New England Transit research proposal on fare-free bus policy. A placeholder file is included and can be replaced by dropping in the finalized PDF.',
-    pdfPath: '/assets/bu-fare-free-proposal.pdf',
+      'Review the full BU research project first, then switch to the 1-page policy brief for a quick summary.',
+    fullReportPath: '/assets/research/bu-research-project-fare-free-mbta-pilot.pdf',
+    policyBriefPath: '/assets/research/public-fare-free-proposal-policy-brief.pdf',
   },
   contact: {
     email: 'contact@netransit.net',
