@@ -376,6 +376,10 @@ main {
   transform: translateY(var(--scroll-shift-inverse));
 }
 
+.hero-photo-main img {
+  object-position: 78% 42%;
+}
+
 .hero-photo-side {
   width: 62%;
   aspect-ratio: 16 / 10;

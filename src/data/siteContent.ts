@@ -55,9 +55,9 @@ export const impactMeta = {
 export const siteContent: SiteContent = {
   hero: {
     eyebrow: 'New England Transit Advocacy',
-    title: 'Championing Better Public Transit Across the Region',
+    title: 'Leading Transit Equity Across Greater Boston through Simulation & Policy',
     description:
-      'We meet with leaders, present transit solutions, and build momentum for equitable bus service through policy outreach, community education, and strategic partnerships.',
+      "We organize meetings with legislators, showcasing our game and explaining how it's been used to promote transit equity across residents. Our goals are to expand transportation access for all communities through fare-free routes, frequent service, and dependable buses.",
     primaryCta: 'View Outreach',
     secondaryCta: 'Donate',
   },
