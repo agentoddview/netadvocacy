@@ -28,9 +28,8 @@ function ImpactStats({ heading, subtitle, lastUpdated, metrics }: ImpactStatsPro
         {metrics.map((metric, index) => (
           <article
             className={`metric-card metric-card--${metric.id}`}
-            data-reveal
             key={metric.id}
-            style={{ '--reveal-delay': `${index * 120}ms` } as CSSProperties}
+            style={{ '--metric-delay': `${index * 120}ms` } as CSSProperties}
           >
             <p className="metric-kicker">{metricKickers[metric.id] ?? 'Impact'}</p>
             <p className="metric-value">{metric.value}</p>

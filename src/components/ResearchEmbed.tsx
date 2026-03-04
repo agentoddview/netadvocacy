@@ -13,7 +13,7 @@ function ResearchEmbed({
   fullReportPath,
   policyBriefPath,
 }: ResearchEmbedProps) {
-  const [selectedDoc, setSelectedDoc] = useState<'full' | 'brief'>('full')
+  const [selectedDoc, setSelectedDoc] = useState<'full' | 'brief'>('brief')
 
   const activeDocPath = useMemo(
     () => (selectedDoc === 'full' ? fullReportPath : policyBriefPath),
@@ -34,18 +34,18 @@ function ResearchEmbed({
       <div className="research-panel">
         <div className="research-switch">
           <button
-            className={`doc-toggle ${selectedDoc === 'full' ? 'is-active' : ''}`}
-            onClick={() => setSelectedDoc('full')}
-            type="button"
-          >
-            22-Page Research Paper
-          </button>
-          <button
             className={`doc-toggle ${selectedDoc === 'brief' ? 'is-active' : ''}`}
             onClick={() => setSelectedDoc('brief')}
             type="button"
           >
             1-Page Policy Brief
+          </button>
+          <button
+            className={`doc-toggle ${selectedDoc === 'full' ? 'is-active' : ''}`}
+            onClick={() => setSelectedDoc('full')}
+            type="button"
+          >
+            22-Page Research Paper
           </button>
         </div>
 
@@ -64,20 +64,6 @@ function ResearchEmbed({
             </a>
           </p>
         </object>
-        <div className="research-actions">
-          <a className="btn btn-secondary" href={activeDocPath} rel="noreferrer" target="_blank">
-            Open {activeDocLabel}
-          </a>
-          {selectedDoc === 'full' ? (
-            <button className="btn btn-secondary" onClick={() => setSelectedDoc('brief')} type="button">
-              View 1-Page Policy Brief
-            </button>
-          ) : (
-            <button className="btn btn-secondary" onClick={() => setSelectedDoc('full')} type="button">
-              View 22-Page Research Paper
-            </button>
-          )}
-        </div>
       </div>
     </div>
   )

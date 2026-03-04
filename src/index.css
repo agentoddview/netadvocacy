@@ -442,6 +442,8 @@ main {
     transform 0.24s ease,
     box-shadow 0.24s ease,
     border-color 0.24s ease;
+  animation: rise-in 0.55s ease both;
+  animation-delay: var(--metric-delay, 0ms);
 }
 
 .metric-card::before {
@@ -546,6 +548,15 @@ main {
   align-content: center;
 }
 
+.post-date {
+  margin: 0;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  font-weight: 700;
+  color: #4e617d;
+}
+
 .post-title-link h3 {
   font-size: clamp(1.4rem, 2.5vw, 2.05rem);
 }
@@ -557,6 +568,18 @@ main {
 
 .post-card-content p {
   color: var(--color-muted);
+}
+
+.post-linkedin-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.post-linkedin-link svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
 }
 
 .post-card:hover {

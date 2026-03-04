@@ -5,6 +5,7 @@ export type Metric = { id: string; value: string; label: string; note?: string }
 export type Slide = { id: string; image: string; alt: string }
 export type AdvocacyPost = {
   id: string
+  publishedDate: string
   title: string
   summary: string
   url: string
@@ -64,33 +65,34 @@ export const siteContent: SiteContent = {
   metrics: [
     {
       id: 'residents',
-      value: '25K+',
+      value: '26K+',
       label: 'People Connected',
-      note: 'Over 25,000 people connected with NET.',
+      note: 'Over 26,000 people fostering equitable transit discussion.',
     },
     {
       id: 'visits',
-      value: '1M+',
+      value: '1.4M+',
       label: 'Total Visits',
-      note: 'Over 1,000,000 visits across experiences.',
+      note: 'Over 1.4 million players learning about local bus routes.',
     },
     {
       id: 'legislators',
-      value: '9',
+      value: '10',
       label: 'Legislators Met',
-      note: 'Met directly through advocacy meetings.',
+      note: 'Showcased the game and lobbied for transit equity.',
     },
     {
       id: 'cities',
-      value: '7',
+      value: '8',
       label: 'Municipalities Covered in Games',
-      note: 'Includes both cities and towns such as Auburn.',
+      note: 'Recreated 1:1 city and town landscapes across Greater Boston and Worcester.',
     },
   ],
   posts: [
     {
       id: 'fire-alarm-sen-crighton',
-      title: 'Not Even the Fire Alarm Stopped Advocacy',
+      publishedDate: 'January 30, 2026',
+      title: 'Advocating Transit Equity with the Chair of Transportation, Senator Brendan Crighton',
       summary:
         'Ilias Benmokrane met with State Senator Brendan Crighton to present how Boston Bus Simulator can educate both youth and adults on local transit systems while supporting legislative conversations on fare-free pilot routes.',
       url: 'https://www.linkedin.com/posts/new-england-transit_not-even-the-fire-alarm-stopped-ilias-benmokrane-activity-7423106511381635074-oQzx',
@@ -105,6 +107,7 @@ export const siteContent: SiteContent = {
     },
     {
       id: 'naples-advocacy',
+      publishedDate: 'January 12, 2026',
       title: 'Transit Advocacy in Naples',
       summary:
         'NET advocacy reached an international audience in Naples, where the team shared regional transit goals and built awareness around equitable bus access, system design, and rider-first planning.',
@@ -120,7 +123,8 @@ export const siteContent: SiteContent = {
     },
     {
       id: 'simulator-strides',
-      title: 'Boston Bus Simulator Momentum',
+      publishedDate: 'December 17, 2025',
+      title: 'Lobbying in Marginalized Communities with Everett Rep. Joe McGonagle',
       summary:
         'The Boston Bus Simulator continues to support advocacy by helping communities visualize real-world transit decisions, making route planning and public policy conversations more accessible and engaging.',
       url: 'https://www.linkedin.com/posts/new-england-transit_boston-bus-simulator-continues-to-make-strides-activity-7407099611049402368--EGZ',
@@ -135,6 +139,7 @@ export const siteContent: SiteContent = {
     },
     {
       id: 'founders-advancing-equity',
+      publishedDate: 'December 4, 2025',
       title: 'Founders Advancing Regional Transit Equity',
       summary:
         'Founders met with policy stakeholders to align advocacy priorities around transit reliability, affordability, and stronger regional coordination that benefits riders across city boundaries.',
@@ -152,7 +157,7 @@ export const siteContent: SiteContent = {
   research: {
     title: 'BU Research Proposal: Fare-Free Buses',
     description:
-      'Review the full BU research project first, then switch to the 1-page policy brief for a quick summary.',
+      'Check out the policy NET founder Ilias Benmokrane is proposing to legislators, which would institute fare-free service for high-ridership bus routes in underrepresented, low-income communities.',
     fullReportPath: '/assets/research/bu-research-project-fare-free-mbta-pilot.pdf',
     policyBriefPath: '/assets/research/public-fare-free-proposal-policy-brief.pdf',
   },
@@ -163,7 +168,11 @@ export const siteContent: SiteContent = {
   footer: {
     mission:
       'New England Transit advances practical, equitable transit policy through outreach, education, and partnerships.',
-    leaders: ['Ilias Benmokrane', 'Medy Florestal', 'Jarek Alexander'],
+    leaders: [
+      'Ilias Benmokrane (Everett)',
+      'Medy Florestal (Lynn)',
+      '& Jarek Alexander (Boston)',
+    ],
     social: [
       { platform: 'linkedin', url: 'https://www.linkedin.com/company/new-england-transit/' },
       { platform: 'instagram', url: 'https://www.instagram.com/netransit_rblx/' },

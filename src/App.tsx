@@ -143,7 +143,7 @@ function App() {
           />
         </section>
 
-        <section className="section impact-section" data-reveal id="impact">
+        <section className="section impact-section" id="impact">
           <ImpactStats
             heading={impactMeta.heading}
             lastUpdated={impactMeta.lastUpdated}

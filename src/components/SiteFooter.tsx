@@ -1,4 +1,4 @@
-import type { SocialLink } from '../data/siteContent'
+﻿import type { SocialLink } from '../data/siteContent'
 
 type SiteFooterProps = {
   mission: string
@@ -56,9 +56,10 @@ function SiteFooter({ mission, leaders, socialLinks }: SiteFooterProps) {
         </nav>
       </div>
 
-      <p className="copyright">© {new Date().getFullYear()} New England Transit. All rights reserved.</p>
+      <p className="copyright">&#169; {new Date().getFullYear()} New England Transit. All rights reserved.</p>
     </footer>
   )
 }
 
 export default SiteFooter
+
