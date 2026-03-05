@@ -44,8 +44,8 @@ function HeroSection({ hero, donateUrl, onViewOutreach }: HeroSectionProps) {
             </figure>
             <figure className="hero-photo hero-photo-side">
               <img
-                alt="Mayor Gary Christenson"
-                src="/assets/legislators/gary-christenson.jpg"
+                alt="Transit advocacy and policy outreach meeting"
+                src="/assets/posts/post-3.jpg"
               />
             </figure>
           </div>
