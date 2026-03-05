@@ -220,6 +220,7 @@ export const siteContent: SiteContent = {
         office: 'Governor',
         location: 'Boston, MA',
         status: 'aware',
+        photo: '/assets/legislators/maura-healey.jpg',
       },
       {
         id: 'robert-van-campen',
@@ -227,6 +228,7 @@ export const siteContent: SiteContent = {
         office: 'Mayor',
         location: 'Everett, MA',
         status: 'aware',
+        photo: '/assets/legislators/robert-van-campen.webp',
       },
       {
         id: 'sal-didomenico',
@@ -234,6 +236,7 @@ export const siteContent: SiteContent = {
         office: 'State Senator',
         location: 'Everett, MA',
         status: 'met',
+        photo: '/assets/legislators/sal-didomenico.jpg',
       },
       {
         id: 'joe-mcgonagle',
@@ -241,8 +244,7 @@ export const siteContent: SiteContent = {
         office: 'State Representative',
         location: 'Everett, MA',
         status: 'met',
-        photo: '/assets/posts/post-3.jpg',
-        photoPosition: '50% 35%',
+        photo: '/assets/legislators/joe-mcgonagle.jpg',
       },
       {
         id: 'katy-rogers',
@@ -250,6 +252,7 @@ export const siteContent: SiteContent = {
         office: 'City Councilor',
         location: 'Everett, MA',
         status: 'aware',
+        photo: '/assets/legislators/katy-rogers.webp',
       },
       {
         id: 'stephanie-martins',
@@ -257,6 +260,7 @@ export const siteContent: SiteContent = {
         office: 'City Councilor',
         location: 'Everett, MA',
         status: 'aware',
+        photo: '/assets/legislators/stephanie-martins.webp',
       },
       {
         id: 'david-leboeuf',
@@ -264,6 +268,7 @@ export const siteContent: SiteContent = {
         office: 'State Representative',
         location: 'Worcester, MA',
         status: 'met',
+        photo: '/assets/legislators/david-leboeuf.jpg',
       },
       {
         id: 'micheal-moore',
@@ -271,6 +276,7 @@ export const siteContent: SiteContent = {
         office: 'State Senator',
         location: 'Worcester, MA',
         status: 'met',
+        photo: '/assets/legislators/micheal-moore.jpg',
       },
       {
         id: 'dan-ryan',
@@ -278,6 +284,7 @@ export const siteContent: SiteContent = {
         office: 'State Representative',
         location: 'Everett, MA',
         status: 'met',
+        photo: '/assets/legislators/dan-ryan.jpg',
       },
       {
         id: 'brendan-crighton',
@@ -285,8 +292,7 @@ export const siteContent: SiteContent = {
         office: 'State Senator',
         location: 'Lynn, MA',
         status: 'met',
-        photo: '/assets/posts/post-1.jpg',
-        photoPosition: '73% 27%',
+        photo: '/assets/legislators/brendan-crighton.jpg',
       },
       {
         id: 'gary-christenson',
@@ -294,6 +300,7 @@ export const siteContent: SiteContent = {
         office: 'Mayor',
         location: 'Malden, MA',
         status: 'met',
+        photo: '/assets/legislators/gary-christenson.jpg',
       },
       {
         id: 'paul-donato',
@@ -301,8 +308,7 @@ export const siteContent: SiteContent = {
         office: 'State Representative',
         location: 'Malden, MA',
         status: 'met',
-        photo: '/assets/posts/post-5.jpg',
-        photoPosition: '50% 26%',
+        photo: '/assets/legislators/paul-donato.jpg',
       },
       {
         id: 'steven-ultrino',
@@ -310,6 +316,7 @@ export const siteContent: SiteContent = {
         office: 'State Representative',
         location: 'Malden, MA',
         status: 'scheduled',
+        photo: '/assets/legislators/steven-ultrino.jpg',
       },
       {
         id: 'judith-garcia',
@@ -317,6 +324,7 @@ export const siteContent: SiteContent = {
         office: 'State Representative',
         location: 'Chelsea, MA',
         status: 'scheduled',
+        photo: '/assets/legislators/judith-garcia.jpg',
       },
     ],
   },

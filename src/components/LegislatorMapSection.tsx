@@ -1,6 +1,6 @@
 import { useEffect, useMemo, type CSSProperties } from 'react'
-import { divIcon, latLngBounds } from 'leaflet'
-import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
+import { latLngBounds } from 'leaflet'
+import { CircleMarker, MapContainer, Popup, TileLayer, useMap } from 'react-leaflet'
 import type { Legislator } from '../data/siteContent'
 
 type LegislatorMapSectionProps = {
@@ -47,14 +47,10 @@ function getPinClass(pin: CityPin) {
   return 'is-scheduled'
 }
 
-function createMarkerIcon(index: number, pinClass: string) {
-  return divIcon({
-    className: 'leaflet-city-marker-wrapper',
-    html: `<div class="leaflet-city-marker ${pinClass}"><span>${index + 1}</span></div>`,
-    iconSize: [34, 34],
-    iconAnchor: [17, 17],
-    popupAnchor: [0, -14],
-  })
+function markerColorByStatus(pinClass: string) {
+  if (pinClass === 'is-aware') return '#0e6e5a'
+  if (pinClass === 'is-scheduled') return '#b57714'
+  return '#1c5ea8'
 }
 
 function FitMapBounds({ pins }: { pins: CityPin[] }) {
@@ -162,7 +158,7 @@ function LegislatorMapSection({ title, description, items }: LegislatorMapSectio
         <section aria-label="Legislator city map" className="legislator-map-panel" data-reveal>
           <div className="map-surface">
             <p className="map-title">Greater Boston + Worcester Coverage</p>
-            <p className="map-subtitle">Interactive OpenStreetMap view driven by legislator locations.</p>
+            <p className="map-subtitle">Interactive OpenStreetMap based on legislator meeting locations.</p>
 
             <MapContainer className="legislator-real-map" center={[42.36, -71.16]} zoom={9} scrollWheelZoom={false}>
               <TileLayer
@@ -171,15 +167,21 @@ function LegislatorMapSection({ title, description, items }: LegislatorMapSectio
               />
               <FitMapBounds pins={cityPins} />
 
-              {cityPins.map((pin, index) => {
+              {cityPins.map((pin) => {
                 const pinClass = getPinClass(pin)
+                const color = markerColorByStatus(pinClass)
                 const total = pin.aware + pin.met + pin.scheduled
 
                 return (
-                  <Marker
-                    icon={createMarkerIcon(index, pinClass)}
+                  <CircleMarker
+                    center={[pin.coordinate.lat, pin.coordinate.lng]}
+                    color="#ffffff"
+                    fillColor={color}
+                    fillOpacity={0.94}
                     key={pin.city}
-                    position={[pin.coordinate.lat, pin.coordinate.lng]}
+                    radius={Math.min(16, 8 + total)}
+                    stroke={true}
+                    weight={2}
                   >
                     <Popup>
                       <strong>{pin.city}</strong>
@@ -188,19 +190,18 @@ function LegislatorMapSection({ title, description, items }: LegislatorMapSectio
                       <br />
                       <small>{pin.legislators.map((legislator) => legislator.name).join(', ')}</small>
                     </Popup>
-                  </Marker>
+                  </CircleMarker>
                 )
               })}
             </MapContainer>
 
             <ol className="map-city-list">
-              {cityPins.map((pin, index) => {
+              {cityPins.map((pin) => {
                 const total = pin.aware + pin.met + pin.scheduled
                 const pinClass = getPinClass(pin)
 
                 return (
-                  <li className="map-city-item" key={pin.city}>
-                    <span className={`city-index ${pinClass}`}>{index + 1}</span>
+                  <li className={`map-city-item ${pinClass}`} key={pin.city}>
                     <div className="city-copy">
                       <p>{pin.city}</p>
                       <p>
@@ -221,9 +222,9 @@ function LegislatorMapSection({ title, description, items }: LegislatorMapSectio
         </section>
 
         <div className="legislator-lists">
-          {renderGroup('Legislators Aware of BBS (*)', aware, 'aware')}
           {renderGroup('Legislators Directly Met', met, 'met')}
           {renderGroup('Meetings Scheduled', scheduled, 'scheduled')}
+          {renderGroup('Legislators Aware of BBS (*)', aware, 'aware')}
         </div>
       </div>
     </div>
