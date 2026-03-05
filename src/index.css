@@ -377,7 +377,7 @@ main {
 }
 
 .hero-photo-main img {
-  object-position: 50% 36%;
+  object-position: 52% 38%;
 }
 
 .hero-photo-side {
@@ -387,6 +387,10 @@ main {
   left: 0;
   bottom: -10px;
   transform: rotate(-2.5deg) translateY(var(--scroll-shift-soft));
+}
+
+.hero-photo-side img {
+  object-position: 50% 18%;
 }
 
 .btn {
@@ -510,6 +514,14 @@ main {
 
 .metric-card--visits::before {
   background: linear-gradient(90deg, #7e111a, #cc1f1f);
+}
+
+.metric-card--media::before {
+  background: linear-gradient(90deg, #0e6e5a, #1a9b80);
+}
+
+.metric-card--community::before {
+  background: linear-gradient(90deg, #0f4f97, #2c7fd6);
 }
 
 .posts-grid {

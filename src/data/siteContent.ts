@@ -30,7 +30,13 @@ export type SiteContent = {
   hero: {
     eyebrow: string
     title: string
-    description: string
+    descriptionPrefix: string
+    linkedGameLabel: string
+    linkedGameUrl: string
+    descriptionMiddle: string
+    linkedPressLabel: string
+    linkedPressUrl: string
+    descriptionSuffix: string
     primaryCta: string
     secondaryCta: string
   }
@@ -76,17 +82,24 @@ export const siteContent: SiteContent = {
   hero: {
     eyebrow: 'New England Transit Advocacy',
     title: 'Leading Transit Equity Across Greater Boston through Simulation & Policy',
-    description:
-      "We organize meetings with legislators, showcasing our game and explaining how it's been used to promote transit equity across residents. Our goals are to expand transportation access for all communities through fare-free routes, frequent service, and dependable buses.",
+    descriptionPrefix: 'We organize meetings with legislators, showcasing ',
+    linkedGameLabel: 'Boston Bus Simulator',
+    linkedGameUrl: 'https://www.roblox.com/games/8731366500/Boston-Bus-Simulator',
+    descriptionMiddle:
+      ' (our flagship video game reviwed by the ',
+    linkedPressLabel: 'Boston Globe',
+    linkedPressUrl: 'https://www.bostonglobe.com/2025/08/19/metro/mbta-bus-simulator/',
+    descriptionSuffix:
+      "), and explaining how it's been used to promote transit equity across residents. Our goals are to expand transportation access for all communities through fare-free routes, frequent service, and dependable buses.",
     primaryCta: 'View Outreach',
     secondaryCta: 'Donate',
   },
   metrics: [
     {
-      id: 'residents',
-      value: '26K+',
-      label: 'People Connected',
-      note: 'Over 26,000 people fostering equitable transit discussion.',
+      id: 'media',
+      value: '5M+',
+      label: 'People Reached',
+      note: 'Over 5 million people have viewed our content on transit.',
     },
     {
       id: 'visits',
@@ -95,16 +108,16 @@ export const siteContent: SiteContent = {
       note: 'Over 1.4 million players learning about local bus routes.',
     },
     {
+      id: 'community',
+      value: '26K+',
+      label: 'Active Members',
+      note: 'More than 26,000 people actively fostering discussion promoting transit equity.',
+    },
+    {
       id: 'legislators',
       value: '10',
       label: 'Legislators Met',
       note: 'Showcased the game and lobbied for transit equity.',
-    },
-    {
-      id: 'cities',
-      value: '8',
-      label: 'Municipalities Covered in Games',
-      note: 'Recreated 1:1 city and town landscapes across Greater Boston and Worcester.',
     },
   ],
   posts: [

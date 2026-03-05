@@ -14,7 +14,17 @@ function HeroSection({ hero, donateUrl, onViewOutreach }: HeroSectionProps) {
           <div className="hero-content">
             <p className="hero-eyebrow">{hero.eyebrow}</p>
             <h1>{hero.title}</h1>
-            <p className="hero-copy">{hero.description}</p>
+            <p className="hero-copy">
+              {hero.descriptionPrefix}
+              <a className="text-link" href={hero.linkedGameUrl} rel="noreferrer" target="_blank">
+                {hero.linkedGameLabel}
+              </a>
+              {hero.descriptionMiddle}
+              <a className="text-link" href={hero.linkedPressUrl} rel="noreferrer" target="_blank">
+                {hero.linkedPressLabel}
+              </a>
+              {hero.descriptionSuffix}
+            </p>
             <div className="hero-actions">
               <button className="btn btn-primary" onClick={onViewOutreach} type="button">
                 {hero.primaryCta}
@@ -34,8 +44,8 @@ function HeroSection({ hero, donateUrl, onViewOutreach }: HeroSectionProps) {
             </figure>
             <figure className="hero-photo hero-photo-side">
               <img
-                alt="Transit advocacy and policy outreach meeting"
-                src="/assets/posts/post-3.jpg"
+                alt="Mayor Gary Christenson"
+                src="/assets/legislators/gary-christenson.jpg"
               />
             </figure>
           </div>

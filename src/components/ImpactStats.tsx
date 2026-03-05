@@ -10,9 +10,9 @@ type ImpactStatsProps = {
 
 function ImpactStats({ heading, subtitle, lastUpdated, metrics }: ImpactStatsProps) {
   const metricKickers: Record<string, string> = {
+    media: 'Media Presence',
     legislators: 'Policy Outreach',
-    residents: 'Community Reach',
-    cities: 'Coverage',
+    community: 'Community Coverage',
     visits: 'Platform Growth',
   }
 
