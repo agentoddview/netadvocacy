@@ -28,8 +28,8 @@ function HeroSection({ hero, donateUrl, onViewOutreach }: HeroSectionProps) {
           <div aria-hidden="true" className="hero-media-collage">
             <figure className="hero-photo hero-photo-main">
               <img
-                alt="NET advocacy with transit simulator in use"
-                src="/assets/posts/post-1.jpg"
+                alt="NET advocacy meeting with community and policy leaders"
+                src="/assets/posts/post-4.jpg"
               />
             </figure>
             <figure className="hero-photo hero-photo-side">

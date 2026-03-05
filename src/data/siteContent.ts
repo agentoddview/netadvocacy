@@ -2,13 +2,16 @@ export type SectionId = 'home' | 'impact' | 'outreach' | 'research' | 'contact'
 
 export type NavItem = { id: SectionId; label: string }
 export type Metric = { id: string; value: string; label: string; note?: string }
-export type Slide = { id: string; image: string; alt: string }
+export type Slide = { id: string; image: string; alt: string; objectPosition?: string }
 export type AdvocacyPost = {
   id: string
   publishedDate: string
   title: string
   summary: string
   url: string
+  ctaLabel?: string
+  ctaUrl?: string
+  ctaType?: 'linkedin' | 'external'
   slides: Slide[]
   dateOrder: number
 }
@@ -101,6 +104,7 @@ export const siteContent: SiteContent = {
           id: 'medford-donato-photo',
           image: '/assets/posts/post-5.jpg',
           alt: 'Ilias Benmokrane meeting with Representative Donato in Medford',
+          objectPosition: '50% 20%',
         },
       ],
       dateOrder: 500,
@@ -120,6 +124,25 @@ export const siteContent: SiteContent = {
         },
       ],
       dateOrder: 400,
+    },
+    {
+      id: 'everett-street-level',
+      publishedDate: 'January 29, 2026',
+      title: 'Showcasing Boston Bus Simulator & Transit Equity Policy to Everett Residents',
+      summary:
+        'NET Founder Ilias Benmokrane curated and presented a slideshow explaining the functions of Boston Bus Simulator from a policy perspective. He explained how over 26,000 members actively engage in disucssions to advance transit equity across Massachusetts and the world.',
+      url: 'https://cityofeverett.com/events/street-level-everett-1-29-26/',
+      ctaLabel: 'View Event Link',
+      ctaUrl: 'https://cityofeverett.com/events/street-level-everett-1-29-26/',
+      ctaType: 'external',
+      slides: [
+        {
+          id: 'everett-street-level-event-photo',
+          image: '/assets/posts/post-6.png',
+          alt: 'Street Level Everett event poster for January 29, 2026',
+        },
+      ],
+      dateOrder: 350,
     },
     {
       id: 'naples-advocacy',

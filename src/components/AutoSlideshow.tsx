@@ -62,13 +62,17 @@ function AutoSlideshow({ slides, postUrl, postTitle }: AutoSlideshowProps) {
       tabIndex={0}
     >
       <a
-        aria-label={`Open LinkedIn post: ${postTitle}`}
+        aria-label={`Open outreach link: ${postTitle}`}
         className="slideshow-frame"
         href={postUrl}
         rel="noreferrer"
         target="_blank"
       >
-        <img alt={activeSlide.alt} src={activeSlide.image} />
+        <img
+          alt={activeSlide.alt}
+          src={activeSlide.image}
+          style={activeSlide.objectPosition ? { objectPosition: activeSlide.objectPosition } : undefined}
+        />
       </a>
 
       {slides.length > 1 ? (
