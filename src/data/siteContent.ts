@@ -1,8 +1,18 @@
-export type SectionId = 'home' | 'impact' | 'outreach' | 'research' | 'contact'
+export type SectionId = 'home' | 'impact' | 'outreach' | 'map' | 'research' | 'contact'
 
 export type NavItem = { id: SectionId; label: string }
 export type Metric = { id: string; value: string; label: string; note?: string }
 export type Slide = { id: string; image: string; alt: string; objectPosition?: string }
+export type LegislatorStatus = 'aware' | 'met' | 'scheduled'
+export type Legislator = {
+  id: string
+  name: string
+  office: string
+  location: string
+  status: LegislatorStatus
+  photo?: string
+  photoPosition?: string
+}
 export type AdvocacyPost = {
   id: string
   publishedDate: string
@@ -26,6 +36,11 @@ export type SiteContent = {
   }
   metrics: Metric[]
   posts: AdvocacyPost[]
+  legislators: {
+    title: string
+    description: string
+    items: Legislator[]
+  }
   research: {
     title: string
     description: string
@@ -45,6 +60,7 @@ export const navItems: NavItem[] = [
   { id: 'home', label: 'Home' },
   { id: 'impact', label: 'Impact' },
   { id: 'outreach', label: 'Outreach' },
+  { id: 'map', label: 'Map' },
   { id: 'research', label: 'Research' },
   { id: 'contact', label: 'Contact' },
 ]
@@ -193,6 +209,117 @@ export const siteContent: SiteContent = {
       dateOrder: 100,
     },
   ],
+  legislators: {
+    title: 'Legislator Map',
+    description:
+      "A live roster of officials we've met with, officials aware of Boston Bus Simulator, and scheduled meetings. Legislators aware of BBS are marked with *, while directly met legislators are shown without an asterisk.",
+    items: [
+      {
+        id: 'maura-healey',
+        name: 'Governor Maura Healey',
+        office: 'Governor',
+        location: 'Boston, MA',
+        status: 'aware',
+      },
+      {
+        id: 'robert-van-campen',
+        name: 'Mayor Robert Van Campen',
+        office: 'Mayor',
+        location: 'Everett, MA',
+        status: 'aware',
+      },
+      {
+        id: 'sal-didomenico',
+        name: 'State Senator Sal DiDomenico',
+        office: 'State Senator',
+        location: 'Everett, MA',
+        status: 'met',
+      },
+      {
+        id: 'joe-mcgonagle',
+        name: 'State Representative Joe McGonagle',
+        office: 'State Representative',
+        location: 'Everett, MA',
+        status: 'met',
+        photo: '/assets/posts/post-3.jpg',
+        photoPosition: '50% 35%',
+      },
+      {
+        id: 'katy-rogers',
+        name: 'City Councilor Katy Rogers',
+        office: 'City Councilor',
+        location: 'Everett, MA',
+        status: 'aware',
+      },
+      {
+        id: 'stephanie-martins',
+        name: 'City Councilor Stephanie Martins',
+        office: 'City Councilor',
+        location: 'Everett, MA',
+        status: 'aware',
+      },
+      {
+        id: 'david-leboeuf',
+        name: 'State Representative David LeBoeuf',
+        office: 'State Representative',
+        location: 'Worcester, MA',
+        status: 'met',
+      },
+      {
+        id: 'micheal-moore',
+        name: 'State Senator Micheal Moore',
+        office: 'State Senator',
+        location: 'Worcester, MA',
+        status: 'met',
+      },
+      {
+        id: 'dan-ryan',
+        name: 'State Representative Dan Ryan',
+        office: 'State Representative',
+        location: 'Everett, MA',
+        status: 'met',
+      },
+      {
+        id: 'brendan-crighton',
+        name: 'State Senator Brendan Crighton',
+        office: 'State Senator',
+        location: 'Lynn, MA',
+        status: 'met',
+        photo: '/assets/posts/post-1.jpg',
+        photoPosition: '73% 27%',
+      },
+      {
+        id: 'gary-christenson',
+        name: 'Mayor Gary Christenson',
+        office: 'Mayor',
+        location: 'Malden, MA',
+        status: 'met',
+      },
+      {
+        id: 'paul-donato',
+        name: 'State Representative Paul Donato',
+        office: 'State Representative',
+        location: 'Malden, MA',
+        status: 'met',
+        photo: '/assets/posts/post-5.jpg',
+        photoPosition: '50% 26%',
+      },
+      {
+        id: 'steven-ultrino',
+        name: 'State Representative Steven Ultrino',
+        office: 'State Representative',
+        location: 'Malden, MA',
+        status: 'scheduled',
+      },
+      {
+        id: 'judith-garcia',
+        name: 'State Representative Judith Garcia',
+        office: 'State Representative',
+        location: 'Chelsea, MA',
+        status: 'scheduled',
+      },
+    ],
+  },
   research: {
     title: 'BU Research Proposal: Fare-Free Buses',
     description:

@@ -3,6 +3,7 @@ import ContactForm from './components/ContactForm'
 import HeaderNav from './components/HeaderNav'
 import HeroSection from './components/HeroSection'
 import ImpactStats from './components/ImpactStats'
+import LegislatorMapSection from './components/LegislatorMapSection'
 import OutreachSection from './components/OutreachSection'
 import ResearchEmbed from './components/ResearchEmbed'
 import SiteFooter from './components/SiteFooter'
@@ -154,6 +155,14 @@ function App() {
 
         <section className="section outreach-section" data-reveal id="outreach">
           <OutreachSection posts={orderedPosts} />
+        </section>
+
+        <section className="section map-section" data-reveal id="map">
+          <LegislatorMapSection
+            description={siteContent.legislators.description}
+            items={siteContent.legislators.items}
+            title={siteContent.legislators.title}
+          />
         </section>
 
         <section className="section research-section" data-reveal id="research">
