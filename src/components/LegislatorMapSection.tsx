@@ -1,6 +1,6 @@
 import { useEffect, useMemo, type CSSProperties } from 'react'
 import { latLngBounds } from 'leaflet'
-import { CircleMarker, MapContainer, Popup, TileLayer, useMap } from 'react-leaflet'
+import { CircleMarker, MapContainer, Popup, TileLayer, Tooltip, useMap } from 'react-leaflet'
 import type { Legislator } from '../data/siteContent'
 
 type LegislatorMapSectionProps = {
@@ -25,6 +25,7 @@ const CITY_COORDINATES: Record<string, CityCoordinate> = {
   Everett: { lat: 42.4084, lng: -71.0537 },
   Lynn: { lat: 42.4668, lng: -70.9495 },
   Malden: { lat: 42.4251, lng: -71.0662 },
+  Revere: { lat: 42.4084, lng: -71.0119 },
   Worcester: { lat: 42.2626, lng: -71.8023 },
 }
 
@@ -183,6 +184,9 @@ function LegislatorMapSection({ title, description, items }: LegislatorMapSectio
                     stroke={true}
                     weight={2}
                   >
+                    <Tooltip direction="top" opacity={0.95}>
+                      {pin.city}: {total} total ({pin.aware} aware, {pin.met} met, {pin.scheduled} scheduled)
+                    </Tooltip>
                     <Popup>
                       <strong>{pin.city}</strong>
                       <br />

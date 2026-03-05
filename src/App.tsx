@@ -153,7 +153,7 @@ function App() {
           />
         </section>
 
-        <section className="section outreach-section" data-reveal id="outreach">
+        <section className="section outreach-section" id="outreach">
           <OutreachSection posts={orderedPosts} />
         </section>
 

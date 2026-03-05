@@ -12,7 +12,7 @@ function PostCard({ post, reverse = false }: PostCardProps) {
   const shouldShowLinkedInIcon = (post.ctaType ?? 'linkedin') === 'linkedin'
 
   return (
-    <article className={`post-card ${reverse ? 'is-reverse' : ''}`} data-reveal>
+    <article className={`post-card ${reverse ? 'is-reverse' : ''}`}>
       <div className="post-card-media">
         <AutoSlideshow postTitle={post.title} postUrl={post.url} slides={post.slides} />
       </div>

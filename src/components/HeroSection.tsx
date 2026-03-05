@@ -29,7 +29,7 @@ function HeroSection({ hero, donateUrl, onViewOutreach }: HeroSectionProps) {
             <figure className="hero-photo hero-photo-main">
               <img
                 alt="NET advocacy meeting with community and policy leaders"
-                src="/assets/posts/post-4.jpg"
+                src="/assets/posts/hero-main.jpg"
               />
             </figure>
             <figure className="hero-photo hero-photo-side">
