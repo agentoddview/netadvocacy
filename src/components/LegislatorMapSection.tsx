@@ -1,4 +1,6 @@
-import { useMemo, type CSSProperties } from 'react'
+import { useEffect, useMemo, type CSSProperties } from 'react'
+import { divIcon, latLngBounds } from 'leaflet'
+import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
 import type { Legislator } from '../data/siteContent'
 
 type LegislatorMapSectionProps = {
@@ -7,16 +9,27 @@ type LegislatorMapSectionProps = {
   items: Legislator[]
 }
 
-type CityLayout = { x: number; y: number }
-type CityPin = { city: string; aware: number; met: number; scheduled: number }
+type CityCoordinate = { lat: number; lng: number }
+type CityPin = {
+  city: string
+  aware: number
+  met: number
+  scheduled: number
+  legislators: Legislator[]
+  coordinate: CityCoordinate
+}
 
-const CITY_LAYOUTS: Record<string, CityLayout> = {
-  Worcester: { x: 18, y: 66 },
-  Lynn: { x: 86, y: 40 },
-  Malden: { x: 76, y: 50 },
-  Everett: { x: 80, y: 56 },
-  Chelsea: { x: 72, y: 62 },
-  Boston: { x: 72, y: 74 },
+const CITY_COORDINATES: Record<string, CityCoordinate> = {
+  Boston: { lat: 42.3601, lng: -71.0589 },
+  Chelsea: { lat: 42.3918, lng: -71.0328 },
+  Everett: { lat: 42.4084, lng: -71.0537 },
+  Lynn: { lat: 42.4668, lng: -70.9495 },
+  Malden: { lat: 42.4251, lng: -71.0662 },
+  Worcester: { lat: 42.2626, lng: -71.8023 },
+}
+
+function extractCity(location: string) {
+  return location.split(',')[0]?.trim() ?? location
 }
 
 function getInitials(fullName: string) {
@@ -28,20 +41,35 @@ function getInitials(fullName: string) {
   return picks.map((word) => word[0]?.toUpperCase()).join('')
 }
 
-function extractCity(location: string) {
-  return location.split(',')[0]?.trim() ?? location
+function getPinClass(pin: CityPin) {
+  if (pin.met > 0) return 'is-met'
+  if (pin.aware > 0) return 'is-aware'
+  return 'is-scheduled'
 }
 
-function getPinClass(pin: CityPin) {
-  if (pin.met > 0) {
-    return 'is-met'
-  }
+function createMarkerIcon(index: number, pinClass: string) {
+  return divIcon({
+    className: 'leaflet-city-marker-wrapper',
+    html: `<div class="leaflet-city-marker ${pinClass}"><span>${index + 1}</span></div>`,
+    iconSize: [34, 34],
+    iconAnchor: [17, 17],
+    popupAnchor: [0, -14],
+  })
+}
 
-  if (pin.aware > 0) {
-    return 'is-aware'
-  }
+function FitMapBounds({ pins }: { pins: CityPin[] }) {
+  const map = useMap()
 
-  return 'is-scheduled'
+  useEffect(() => {
+    if (pins.length === 0) {
+      return
+    }
+
+    const bounds = latLngBounds(pins.map((pin) => [pin.coordinate.lat, pin.coordinate.lng]))
+    map.fitBounds(bounds.pad(0.28), { animate: false })
+  }, [map, pins])
+
+  return null
 }
 
 function LegislatorMapSection({ title, description, items }: LegislatorMapSectionProps) {
@@ -54,25 +82,30 @@ function LegislatorMapSection({ title, description, items }: LegislatorMapSectio
 
     items.forEach((item) => {
       const city = extractCity(item.location)
-      const group = grouped.get(city) ?? { city, aware: 0, met: 0, scheduled: 0 }
+      const coordinate = CITY_COORDINATES[city]
+      if (!coordinate) {
+        return
+      }
 
-      if (item.status === 'aware') group.aware += 1
-      if (item.status === 'met') group.met += 1
-      if (item.status === 'scheduled') group.scheduled += 1
+      const current = grouped.get(city) ?? {
+        city,
+        aware: 0,
+        met: 0,
+        scheduled: 0,
+        legislators: [],
+        coordinate,
+      }
 
-      grouped.set(city, group)
+      if (item.status === 'aware') current.aware += 1
+      if (item.status === 'met') current.met += 1
+      if (item.status === 'scheduled') current.scheduled += 1
+      current.legislators.push(item)
+
+      grouped.set(city, current)
     })
 
-    return Array.from(grouped.values())
-      .filter((group) => CITY_LAYOUTS[group.city])
-      .sort((a, b) => {
-        const aLayout = CITY_LAYOUTS[a.city]
-        const bLayout = CITY_LAYOUTS[b.city]
-        return aLayout.x - bLayout.x || aLayout.y - bLayout.y
-      })
+    return Array.from(grouped.values()).sort((a, b) => a.coordinate.lng - b.coordinate.lng)
   }, [items])
-
-  const bostonLayout = CITY_LAYOUTS.Boston
 
   const renderGroup = (
     groupTitle: string,
@@ -129,41 +162,36 @@ function LegislatorMapSection({ title, description, items }: LegislatorMapSectio
         <section aria-label="Legislator city map" className="legislator-map-panel" data-reveal>
           <div className="map-surface">
             <p className="map-title">Greater Boston + Worcester Coverage</p>
-            <p className="map-subtitle">Numbered pins match the city list below.</p>
+            <p className="map-subtitle">Interactive OpenStreetMap view driven by legislator locations.</p>
 
-            <div className="map-canvas">
-              <svg aria-hidden="true" className="map-lines" viewBox="0 0 100 100">
-                {cityPins
-                  .filter((pin) => pin.city !== 'Boston')
-                  .map((pin) => {
-                    const point = CITY_LAYOUTS[pin.city]
-                    return (
-                      <line
-                        key={`line-${pin.city}`}
-                        x1={bostonLayout.x}
-                        x2={point.x}
-                        y1={bostonLayout.y}
-                        y2={point.y}
-                      />
-                    )
-                  })}
-              </svg>
+            <MapContainer className="legislator-real-map" center={[42.36, -71.16]} zoom={9} scrollWheelZoom={false}>
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <FitMapBounds pins={cityPins} />
 
               {cityPins.map((pin, index) => {
-                const cityLayout = CITY_LAYOUTS[pin.city]
                 const pinClass = getPinClass(pin)
+                const total = pin.aware + pin.met + pin.scheduled
 
                 return (
-                  <div
-                    className={`map-pin ${pinClass}`}
+                  <Marker
+                    icon={createMarkerIcon(index, pinClass)}
                     key={pin.city}
-                    style={{ left: `${cityLayout.x}%`, top: `${cityLayout.y}%` }}
+                    position={[pin.coordinate.lat, pin.coordinate.lng]}
                   >
-                    <span className="map-pin-dot">{index + 1}</span>
-                  </div>
+                    <Popup>
+                      <strong>{pin.city}</strong>
+                      <br />
+                      {total} total | {pin.aware} aware | {pin.met} met | {pin.scheduled} scheduled
+                      <br />
+                      <small>{pin.legislators.map((legislator) => legislator.name).join(', ')}</small>
+                    </Popup>
+                  </Marker>
                 )
               })}
-            </div>
+            </MapContainer>
 
             <ol className="map-city-list">
               {cityPins.map((pin, index) => {
