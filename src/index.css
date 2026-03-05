@@ -622,7 +622,7 @@ main {
 
 .legislator-layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   gap: var(--space-4);
 }
 
@@ -638,15 +638,15 @@ main {
 
 .map-surface {
   position: relative;
-  min-height: 560px;
+  min-height: 540px;
   border-radius: var(--radius-sm);
   border: 1px solid rgba(17, 44, 76, 0.15);
   background:
-    radial-gradient(circle at 12% 14%, rgba(33, 126, 107, 0.12), transparent 35%),
-    radial-gradient(circle at 86% 16%, rgba(204, 31, 31, 0.12), transparent 30%),
-    linear-gradient(180deg, #f8fbff 0%, #eef3f9 100%);
+    radial-gradient(circle at 12% 14%, rgba(33, 126, 107, 0.1), transparent 38%),
+    radial-gradient(circle at 86% 14%, rgba(204, 31, 31, 0.09), transparent 34%),
+    linear-gradient(180deg, #f9fbff 0%, #edf3fa 100%);
   overflow: hidden;
-  padding: 1rem;
+  padding: 1rem 1rem 0.9rem;
 }
 
 .map-surface::before,
@@ -659,61 +659,85 @@ main {
 
 .map-surface::before {
   background-image:
-    linear-gradient(to right, rgba(16, 52, 90, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(16, 52, 90, 0.05) 1px, transparent 1px);
-  background-size: 28px 28px;
+    linear-gradient(to right, rgba(16, 52, 90, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 52, 90, 0.04) 1px, transparent 1px);
+  background-size: 30px 30px;
 }
 
 .map-surface::after {
-  background:
-    linear-gradient(135deg, transparent 0%, transparent 42%, rgba(19, 79, 157, 0.12) 44%, transparent 46%),
-    linear-gradient(25deg, transparent 0%, transparent 62%, rgba(24, 115, 96, 0.12) 65%, transparent 67%);
+  background: linear-gradient(
+    140deg,
+    transparent 0%,
+    transparent 58%,
+    rgba(21, 74, 138, 0.08) 60%,
+    transparent 62%
+  );
+  opacity: 0.65;
 }
 
 .map-title {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   font-family: 'Manrope', 'Segoe UI', sans-serif;
   font-weight: 700;
   color: #1a314f;
   letter-spacing: 0.01em;
 }
 
+.map-subtitle {
+  position: relative;
+  z-index: 3;
+  margin-top: 0.25rem;
+  color: #4c607b;
+  font-size: 0.85rem;
+}
+
+.map-canvas {
+  position: relative;
+  height: 255px;
+  border-radius: 12px;
+  margin-top: 0.85rem;
+  border: 1px solid rgba(17, 44, 76, 0.14);
+  background:
+    radial-gradient(circle at 78% 72%, rgba(22, 95, 172, 0.1), transparent 46%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(245, 250, 255, 0.76));
+  overflow: hidden;
+  z-index: 2;
+}
+
+.map-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.map-lines line {
+  stroke: rgba(20, 73, 138, 0.24);
+  stroke-width: 0.6;
+  stroke-linecap: round;
+}
+
 .map-pin {
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   transform: translate(-50%, -50%);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.36rem;
 }
 
 .map-pin-dot {
-  width: 0.8rem;
-  height: 0.8rem;
+  width: 1.6rem;
+  height: 1.6rem;
   border-radius: 50%;
-  border: 2px solid #fff;
-  box-shadow: 0 0 0 4px rgba(13, 27, 45, 0.1);
-}
-
-.map-pin-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.26rem 0.52rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(14, 37, 65, 0.16);
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 0 0 4px rgba(10, 29, 52, 0.12),
+    0 6px 10px rgba(10, 29, 52, 0.16);
+  display: inline-grid;
+  place-items: center;
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
   font-size: 0.74rem;
-  color: #233850;
-  font-weight: 700;
-}
-
-.map-pin-label strong {
-  font-size: 0.72rem;
-  background: rgba(16, 54, 95, 0.08);
-  border-radius: 999px;
-  padding: 0.08rem 0.4rem;
+  font-weight: 800;
+  color: #fff;
 }
 
 .map-pin.is-aware .map-pin-dot,
@@ -731,15 +755,74 @@ main {
   background: #b57714;
 }
 
+.map-city-list {
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+  position: relative;
+  z-index: 3;
+}
+
+.map-city-item {
+  border-radius: 10px;
+  border: 1px solid rgba(16, 41, 72, 0.13);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.46rem 0.55rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.45rem;
+  align-items: start;
+}
+
+.city-index {
+  min-width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 50%;
+  color: #fff;
+  display: inline-grid;
+  place-items: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.city-index.is-aware {
+  background: #0e6e5a;
+}
+
+.city-index.is-met {
+  background: #1c5ea8;
+}
+
+.city-index.is-scheduled {
+  background: #b57714;
+}
+
+.city-copy {
+  display: grid;
+  gap: 0.08rem;
+}
+
+.city-copy p:first-child {
+  font-size: 0.83rem;
+  color: #1a304b;
+  font-weight: 700;
+}
+
+.city-copy p:last-child {
+  font-size: 0.7rem;
+  color: #4f617a;
+}
+
 .map-legend {
-  position: absolute;
-  left: 1rem;
-  right: 1rem;
-  bottom: 1rem;
+  margin-top: 0.75rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  z-index: 2;
+  position: relative;
+  z-index: 3;
 }
 
 .legend-chip {
@@ -747,7 +830,7 @@ main {
   color: #fff;
   font-size: 0.72rem;
   font-weight: 700;
-  padding: 0.33rem 0.62rem;
+  padding: 0.3rem 0.58rem;
   letter-spacing: 0.02em;
 }
 
@@ -1181,6 +1264,10 @@ main {
 
   .map-surface {
     min-height: 420px;
+  }
+
+  .map-city-list {
+    grid-template-columns: 1fr;
   }
 
   .hero-media-collage {

@@ -8,14 +8,15 @@ type LegislatorMapSectionProps = {
 }
 
 type CityLayout = { x: number; y: number }
+type CityPin = { city: string; aware: number; met: number; scheduled: number }
 
 const CITY_LAYOUTS: Record<string, CityLayout> = {
-  Boston: { x: 74, y: 70 },
-  Everett: { x: 76, y: 64 },
-  Lynn: { x: 83, y: 56 },
-  Malden: { x: 78, y: 60 },
-  Chelsea: { x: 75, y: 66 },
-  Worcester: { x: 32, y: 71 },
+  Worcester: { x: 18, y: 66 },
+  Lynn: { x: 86, y: 40 },
+  Malden: { x: 76, y: 50 },
+  Everett: { x: 80, y: 56 },
+  Chelsea: { x: 72, y: 62 },
+  Boston: { x: 72, y: 74 },
 }
 
 function getInitials(fullName: string) {
@@ -31,21 +32,25 @@ function extractCity(location: string) {
   return location.split(',')[0]?.trim() ?? location
 }
 
+function getPinClass(pin: CityPin) {
+  if (pin.met > 0) {
+    return 'is-met'
+  }
+
+  if (pin.aware > 0) {
+    return 'is-aware'
+  }
+
+  return 'is-scheduled'
+}
+
 function LegislatorMapSection({ title, description, items }: LegislatorMapSectionProps) {
   const aware = useMemo(() => items.filter((item) => item.status === 'aware'), [items])
   const met = useMemo(() => items.filter((item) => item.status === 'met'), [items])
   const scheduled = useMemo(() => items.filter((item) => item.status === 'scheduled'), [items])
 
   const cityPins = useMemo(() => {
-    const grouped = new Map<
-      string,
-      {
-        city: string
-        aware: number
-        met: number
-        scheduled: number
-      }
-    >()
+    const grouped = new Map<string, CityPin>()
 
     items.forEach((item) => {
       const city = extractCity(item.location)
@@ -60,8 +65,14 @@ function LegislatorMapSection({ title, description, items }: LegislatorMapSectio
 
     return Array.from(grouped.values())
       .filter((group) => CITY_LAYOUTS[group.city])
-      .sort((a, b) => a.city.localeCompare(b.city))
+      .sort((a, b) => {
+        const aLayout = CITY_LAYOUTS[a.city]
+        const bLayout = CITY_LAYOUTS[b.city]
+        return aLayout.x - bLayout.x || aLayout.y - bLayout.y
+      })
   }, [items])
+
+  const bostonLayout = CITY_LAYOUTS.Boston
 
   const renderGroup = (
     groupTitle: string,
@@ -118,26 +129,60 @@ function LegislatorMapSection({ title, description, items }: LegislatorMapSectio
         <section aria-label="Legislator city map" className="legislator-map-panel" data-reveal>
           <div className="map-surface">
             <p className="map-title">Greater Boston + Worcester Coverage</p>
-            {cityPins.map((pin) => {
-              const cityLayout = CITY_LAYOUTS[pin.city]
-              const total = pin.aware + pin.met + pin.scheduled
-              const pinClass =
-                pin.scheduled > 0 ? 'is-scheduled' : pin.aware > 0 && pin.met === 0 ? 'is-aware' : 'is-met'
+            <p className="map-subtitle">Numbered pins match the city list below.</p>
 
-              return (
-                <div
-                  className={`map-pin ${pinClass}`}
-                  key={pin.city}
-                  style={{ left: `${cityLayout.x}%`, top: `${cityLayout.y}%` }}
-                >
-                  <span className="map-pin-dot" />
-                  <span className="map-pin-label">
-                    {pin.city}
-                    <strong>{total}</strong>
-                  </span>
-                </div>
-              )
-            })}
+            <div className="map-canvas">
+              <svg aria-hidden="true" className="map-lines" viewBox="0 0 100 100">
+                {cityPins
+                  .filter((pin) => pin.city !== 'Boston')
+                  .map((pin) => {
+                    const point = CITY_LAYOUTS[pin.city]
+                    return (
+                      <line
+                        key={`line-${pin.city}`}
+                        x1={bostonLayout.x}
+                        x2={point.x}
+                        y1={bostonLayout.y}
+                        y2={point.y}
+                      />
+                    )
+                  })}
+              </svg>
+
+              {cityPins.map((pin, index) => {
+                const cityLayout = CITY_LAYOUTS[pin.city]
+                const pinClass = getPinClass(pin)
+
+                return (
+                  <div
+                    className={`map-pin ${pinClass}`}
+                    key={pin.city}
+                    style={{ left: `${cityLayout.x}%`, top: `${cityLayout.y}%` }}
+                  >
+                    <span className="map-pin-dot">{index + 1}</span>
+                  </div>
+                )
+              })}
+            </div>
+
+            <ol className="map-city-list">
+              {cityPins.map((pin, index) => {
+                const total = pin.aware + pin.met + pin.scheduled
+                const pinClass = getPinClass(pin)
+
+                return (
+                  <li className="map-city-item" key={pin.city}>
+                    <span className={`city-index ${pinClass}`}>{index + 1}</span>
+                    <div className="city-copy">
+                      <p>{pin.city}</p>
+                      <p>
+                        {total} total | {pin.aware} aware | {pin.met} met | {pin.scheduled} scheduled
+                      </p>
+                    </div>
+                  </li>
+                )
+              })}
+            </ol>
 
             <div className="map-legend">
               <span className="legend-chip is-aware">Aware of BBS (*)</span>
