@@ -90,6 +90,22 @@ export const siteContent: SiteContent = {
   ],
   posts: [
     {
+      id: 'medford-donato-advocacy',
+      publishedDate: 'March 5, 2026',
+      title: 'Next Stop for Advocacy: Medford, Meeting with Representative Donato',
+      summary:
+        'Founder Ilias Benmokrane met with State Representative Paul Donato in Medford to demonstrate how Boston Bus Simulator supports transit usage and fosters equity-focused transportation dialogue. NET is partnering on local outreach to bring the experience to more residents and encourage greater bus and train ridership.',
+      url: 'https://www.linkedin.com/posts/new-england-transit_medford-were-advocating-for-you-this-activity-7435128792378941441-cW-7',
+      slides: [
+        {
+          id: 'medford-donato-photo',
+          image: '/assets/posts/post-5.jpg',
+          alt: 'Ilias Benmokrane meeting with Representative Donato in Medford',
+        },
+      ],
+      dateOrder: 500,
+    },
+    {
       id: 'fire-alarm-sen-crighton',
       publishedDate: 'January 30, 2026',
       title: 'Advocating Transit Equity with the Chair of Transportation, Senator Brendan Crighton',
