@@ -301,6 +301,7 @@ export const siteContent: SiteContent = {
         location: 'Malden, MA',
         status: 'met',
         photo: '/assets/legislators/gary-christenson.jpg',
+        photoPosition: '50% 20%',
       },
       {
         id: 'paul-donato',

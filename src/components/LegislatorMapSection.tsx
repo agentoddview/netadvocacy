@@ -25,6 +25,7 @@ const CITY_COORDINATES: Record<string, CityCoordinate> = {
   Everett: { lat: 42.4084, lng: -71.0537 },
   Lynn: { lat: 42.4668, lng: -70.9495 },
   Malden: { lat: 42.4251, lng: -71.0662 },
+  Medford: { lat: 42.4184, lng: -71.1062 },
   Revere: { lat: 42.4084, lng: -71.0119 },
   Worcester: { lat: 42.2626, lng: -71.8023 },
 }
