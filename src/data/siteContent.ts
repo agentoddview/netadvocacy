@@ -86,7 +86,7 @@ export const siteContent: SiteContent = {
     linkedGameLabel: 'Boston Bus Simulator',
     linkedGameUrl: 'https://www.roblox.com/games/8731366500/Boston-Bus-Simulator',
     descriptionMiddle:
-      ' (our flagship video game reviwed by the ',
+      ' (our flagship video game reviewed by the ',
     linkedPressLabel: 'Boston Globe',
     linkedPressUrl: 'https://www.bostonglobe.com/2025/08/19/metro/mbta-bus-simulator/',
     descriptionSuffix:
