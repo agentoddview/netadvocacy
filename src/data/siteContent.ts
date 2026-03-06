@@ -235,6 +235,7 @@ export const siteContent: SiteContent = {
         office: 'MBTA General Manager',
         location: 'Boston, MA',
         status: 'aware',
+        photo: '/assets/legislators/phil-eng.png',
         featured: true,
         featuredLabel: 'Transit Leadership',
       },
