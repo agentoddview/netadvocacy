@@ -338,6 +338,7 @@ export const siteContent: SiteContent = {
         office: 'State Senator',
         location: 'Medford, MA',
         status: 'scheduled',
+        photo: '/assets/legislators/patricia-jehlen.jpg',
       },
       {
         id: 'judith-garcia',
