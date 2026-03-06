@@ -333,6 +333,13 @@ export const siteContent: SiteContent = {
         photo: '/assets/legislators/steven-ultrino.jpg',
       },
       {
+        id: 'patricia-jehlen',
+        name: 'State Senator Patricia Jehlen',
+        office: 'State Senator',
+        location: 'Medford, MA',
+        status: 'scheduled',
+      },
+      {
         id: 'judith-garcia',
         name: 'State Representative Judith Garcia',
         office: 'State Representative',
