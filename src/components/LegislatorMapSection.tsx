@@ -71,9 +71,15 @@ function FitMapBounds({ pins }: { pins: CityPin[] }) {
 }
 
 function LegislatorMapSection({ title, description, items }: LegislatorMapSectionProps) {
-  const aware = useMemo(() => items.filter((item) => item.status === 'aware'), [items])
-  const met = useMemo(() => items.filter((item) => item.status === 'met'), [items])
-  const scheduled = useMemo(() => items.filter((item) => item.status === 'scheduled'), [items])
+  const sortGroup = (groupItems: Legislator[]) =>
+    [...groupItems].sort((a, b) => Number(b.featured ?? false) - Number(a.featured ?? false))
+
+  const aware = useMemo(() => sortGroup(items.filter((item) => item.status === 'aware')), [items])
+  const met = useMemo(() => sortGroup(items.filter((item) => item.status === 'met')), [items])
+  const scheduled = useMemo(
+    () => sortGroup(items.filter((item) => item.status === 'scheduled')),
+    [items],
+  )
 
   const cityPins = useMemo(() => {
     const grouped = new Map<string, CityPin>()
@@ -117,7 +123,10 @@ function LegislatorMapSection({ title, description, items }: LegislatorMapSectio
       </div>
       <div className="legislator-grid">
         {groupItems.map((legislator) => (
-          <article className={`legislator-card is-${statusClass}`} key={legislator.id}>
+          <article
+            className={`legislator-card is-${statusClass}${legislator.featured ? ' is-featured' : ''}`}
+            key={legislator.id}
+          >
             <div className="legislator-avatar" aria-hidden="true">
               {legislator.photo ? (
                 <img
@@ -135,6 +144,9 @@ function LegislatorMapSection({ title, description, items }: LegislatorMapSectio
             </div>
 
             <div className="legislator-copy">
+              {legislator.featuredLabel ? (
+                <p className="legislator-badge">{legislator.featuredLabel}</p>
+              ) : null}
               <p className="legislator-name">
                 {legislator.name}
                 {legislator.status === 'aware' ? <sup aria-label="Aware of BBS">*</sup> : null}

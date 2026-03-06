@@ -12,6 +12,8 @@ export type Legislator = {
   status: LegislatorStatus
   photo?: string
   photoPosition?: string
+  featured?: boolean
+  featuredLabel?: string
 }
 export type AdvocacyPost = {
   id: string
@@ -227,6 +229,15 @@ export const siteContent: SiteContent = {
     description:
       "A live roster of officials we've met with, officials aware of Boston Bus Simulator, and scheduled meetings. Legislators aware of BBS are marked with *, while directly met legislators are shown without an asterisk.",
     items: [
+      {
+        id: 'phil-eng',
+        name: 'Phil Eng',
+        office: 'MBTA General Manager',
+        location: 'Boston, MA',
+        status: 'aware',
+        featured: true,
+        featuredLabel: 'Transit Leadership',
+      },
       {
         id: 'maura-healey',
         name: 'Governor Maura Healey',
