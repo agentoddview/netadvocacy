@@ -350,6 +350,7 @@ export const siteContent: SiteContent = {
         office: 'MeVa Administrator',
         location: 'Haverhill, MA',
         status: 'met',
+        photo: '/assets/legislators/Noah-Berger.jpg',
       },
       {
         id: 'joshua-rickman',
@@ -357,6 +358,7 @@ export const siteContent: SiteContent = {
         office: 'WRTA Administrator',
         location: 'Worcester, MA',
         status: 'met',
+        photo: '/assets/legislators/Joshua-Rickman.png',
       },
       {
         id: 'patricia-jehlen',
@@ -372,6 +374,7 @@ export const siteContent: SiteContent = {
         office: 'Assistant Commissioner for Transit Development',
         location: 'New York City, NY',
         status: 'scheduled',
+        photo: '/assets/legislators/diniece-mendes.jpg',
       },
       {
         id: 'mike-flynn',
@@ -379,6 +382,7 @@ export const siteContent: SiteContent = {
         office: 'Commissioner of New York City Department of Transportation',
         location: 'New York City, NY',
         status: 'aware',
+        photo: '/assets/legislators/commissioner-flynn.jpg',
       },
     ],
   },
