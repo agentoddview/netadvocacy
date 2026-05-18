@@ -133,7 +133,7 @@ export const siteContent: SiteContent = {
       slides: [
         {
           id: 'founders-ilias-jarek-photo',
-          image: '/assets/posts/post-4.jpg',
+          image: '/assets/posts/1779036415116.jpg',
           alt: 'NET founders advancing transit advocacy',
         },
       ],
@@ -149,7 +149,7 @@ export const siteContent: SiteContent = {
       slides: [
         {
           id: 'state-house-feedback-photo',
-          image: '/assets/posts/post-1.jpg',
+          image: '/assets/posts/1774375464174.jpg',
           alt: 'Transit advocacy conversation connected to State House feedback',
         },
       ],
@@ -165,7 +165,7 @@ export const siteContent: SiteContent = {
       slides: [
         {
           id: 'haverhill-meva-photo',
-          image: '/assets/legislators/Noah-Berger.jpg',
+          image: '/assets/posts/1773428468835.jpg',
           alt: 'MeVa Administrator Noah Berger representing Haverhill regional transit outreach',
         },
       ],
