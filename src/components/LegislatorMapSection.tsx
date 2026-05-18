@@ -23,9 +23,11 @@ const CITY_COORDINATES: Record<string, CityCoordinate> = {
   Boston: { lat: 42.3601, lng: -71.0589 },
   Chelsea: { lat: 42.3918, lng: -71.0328 },
   Everett: { lat: 42.4084, lng: -71.0537 },
+  Haverhill: { lat: 42.7762, lng: -71.0773 },
   Lynn: { lat: 42.4668, lng: -70.9495 },
   Malden: { lat: 42.4251, lng: -71.0662 },
   Medford: { lat: 42.4184, lng: -71.1062 },
+  'New York City': { lat: 40.7128, lng: -74.006 },
   Revere: { lat: 42.4084, lng: -71.0119 },
   Worcester: { lat: 42.2626, lng: -71.8023 },
 }
@@ -171,10 +173,10 @@ function LegislatorMapSection({ title, description, items }: LegislatorMapSectio
       <div className="legislator-layout">
         <section aria-label="Legislator city map" className="legislator-map-panel" data-reveal>
           <div className="map-surface">
-            <p className="map-title">Greater Boston + Worcester Coverage</p>
-            <p className="map-subtitle">Interactive OpenStreetMap based on legislator meeting locations.</p>
+            <p className="map-title">Northeast Transit Advocacy Coverage</p>
+            <p className="map-subtitle">Interactive OpenStreetMap based on official and transit leader locations.</p>
 
-            <MapContainer className="legislator-real-map" center={[42.36, -71.16]} zoom={9} scrollWheelZoom={false}>
+            <MapContainer className="legislator-real-map" center={[41.75, -72.55]} zoom={7} scrollWheelZoom={false}>
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
