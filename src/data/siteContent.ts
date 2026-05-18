@@ -124,6 +124,54 @@ export const siteContent: SiteContent = {
   ],
   posts: [
     {
+      id: 'founders-ilias-jarek-advocacy',
+      publishedDate: 'May 17, 2026',
+      title: 'Founders Expanding Transit Advocacy Across the Region',
+      summary:
+        'Founders Ilias Benmokrane and Jarek Alexander continue building NET advocacy through policy outreach, public education, and direct conversations with leaders about how simulation can help residents understand transit access and service equity.',
+      url: 'https://www.linkedin.com/posts/new-england-transit_founders-ilias-benmokrane-jarek-alexander-activity-7461819559751188480-VHUP',
+      slides: [
+        {
+          id: 'founders-ilias-jarek-photo',
+          image: '/assets/posts/post-4.jpg',
+          alt: 'NET founders advancing transit advocacy',
+        },
+      ],
+      dateOrder: 800,
+    },
+    {
+      id: 'state-house-feedback',
+      publishedDate: 'March 24, 2026',
+      title: 'Bringing Community Transit Feedback to the State House',
+      summary:
+        'NET brought rider-focused feedback back to the State House, connecting community input with policy conversations around better bus service, fare-free routes, and stronger transit access for underrepresented communities.',
+      url: 'https://www.linkedin.com/posts/new-england-transit_we-take-our-feed-back-to-the-state-house-activity-7442270113300516865-SmSK',
+      slides: [
+        {
+          id: 'state-house-feedback-photo',
+          image: '/assets/posts/post-1.jpg',
+          alt: 'Transit advocacy conversation connected to State House feedback',
+        },
+      ],
+      dateOrder: 700,
+    },
+    {
+      id: 'haverhill-meva-advocacy',
+      publishedDate: 'March 13, 2026',
+      title: 'Welcome to Haverhill: Regional Transit Advocacy with MeVa',
+      summary:
+        'NET expanded outreach to Haverhill by connecting Boston Bus Simulator advocacy with regional transit leadership, strengthening conversations about bus access, local service awareness, and rider education beyond Greater Boston.',
+      url: 'https://www.linkedin.com/posts/new-england-transit_welcome-to-haverhill-where-founder-ilias-activity-7438298124147720193-pLNR',
+      slides: [
+        {
+          id: 'haverhill-meva-photo',
+          image: '/assets/legislators/Noah-Berger.jpg',
+          alt: 'MeVa Administrator Noah Berger representing Haverhill regional transit outreach',
+        },
+      ],
+      dateOrder: 600,
+    },
+    {
       id: 'medford-donato-advocacy',
       publishedDate: 'March 5, 2026',
       title: 'Next Stop for Advocacy: Medford, Meeting with Representative Donato',
