@@ -105,9 +105,9 @@ export const siteContent: SiteContent = {
     },
     {
       id: 'visits',
-      value: '1.4M+',
+      value: '1.6M+',
       label: 'Total Visits',
-      note: 'Over 1.4 million players learning about local bus routes.',
+      note: 'Over 1.6 million players learning about local bus routes.',
     },
     {
       id: 'community',
@@ -415,6 +415,14 @@ export const siteContent: SiteContent = {
         location: 'Medford, MA',
         status: 'met',
         photo: '/assets/legislators/patricia-jehlen.jpg',
+      },
+      {
+        id: 'francesco-favo',
+        name: 'Francesco Favo',
+        office: 'ANM Director',
+        location: 'Naples, Italy',
+        status: 'met',
+        photo: '/assets/legislators/Francesco-favo.jpeg',
       },
       {
         id: 'diniece-mendes',

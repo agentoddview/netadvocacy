@@ -27,6 +27,7 @@ const CITY_COORDINATES: Record<string, CityCoordinate> = {
   Lynn: { lat: 42.4668, lng: -70.9495 },
   Malden: { lat: 42.4251, lng: -71.0662 },
   Medford: { lat: 42.4184, lng: -71.1062 },
+  Naples: { lat: 40.8518, lng: 14.2681 },
   'New York City': { lat: 40.7128, lng: -74.006 },
   Revere: { lat: 42.4084, lng: -71.0119 },
   Worcester: { lat: 42.2626, lng: -71.8023 },
